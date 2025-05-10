@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outbound Calls Services - Professional Telemarketing Solutions</title>
+    <script defer src="/js/alpinejs-persist@3.x.x.min.js"></script>
+    <script defer src="/js/alpinejs@3.x.x.min.js"></script>
+    <script defer src="/js/htmx.org@2.0.4.min.js"></script>
+    <link rel="stylesheet" href="/css/output.css">
+    <!-- Add AOS CSS -->
+    <link href="/css/aos@2.3.1.css" rel="stylesheet">
+    <!-- Add AOS JS -->
+    <script src="/js/aos@2.3.1.js"></script>
+    <script defer src="/js/partials.js"></script>
+</head>
+    <body x-data="{ isDark: $persist(false), isDrawerOpen: false,  lang: $persist('en'), t(key) { return window.translations[this.lang][key] || key; } }" class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" x-init="AOS.init()">
+    <nav-bar></nav-bar>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold mb-6" data-aos="fade-up">Outbound Calls Services</h1>
+                <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Drive your business growth with our professional outbound calling services. We help you connect with your target audience and achieve your business objectives.
+                </p>
+                <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                    Get Started Today
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Our Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service Card 1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up">
+                <div class="text-blue-600 mb-4">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Sales Calls</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Professional sales calls to promote your products and services, with trained agents who understand your business and can effectively communicate your value proposition.
+                </p>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-blue-600 mb-4">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Appointment Setting</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Schedule meetings and appointments with potential clients, ensuring your sales team focuses on closing deals rather than scheduling.
+                </p>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-blue-600 mb-4">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Market Research</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Gather valuable market insights through targeted phone surveys and research calls to help you make informed business decisions.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="bg-gray-100 dark:bg-gray-900 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Why Choose Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up">
+                    <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-blue-600">24/7</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white">24/7 Availability</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Round-the-clock service to reach your target audience at their convenience</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-blue-600">100+</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Experienced Agents</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Highly trained professionals with years of experience in telemarketing</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-blue-600">98%</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Success Rate</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Proven track record of successful campaigns and satisfied clients</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-blue-600">100%</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Customized Solutions</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Tailored strategies to meet your specific business needs</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Our Process</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center" data-aos="fade-up">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">1</div>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white">Consultation</h3>
+                <p class="text-gray-600 dark:text-gray-300">We understand your business goals and requirements</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">2</div>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white">Strategy</h3>
+                <p class="text-gray-600 dark:text-gray-300">Develop a customized calling strategy for your needs</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">3</div>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white">Execution</h3>
+                <p class="text-gray-600 dark:text-gray-300">Our trained agents implement the strategy</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">4</div>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white">Reporting</h3>
+                <p class="text-gray-600 dark:text-gray-300">Regular updates and detailed performance reports</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="bg-gray-100 dark:bg-gray-900 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">What Our Clients Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">"Their outbound calling service has significantly increased our sales conversion rate. The team is professional and results-driven."</p>
+                    <p class="font-semibold dark:text-white">- John Smith, CEO</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">"The appointment setting service has been a game-changer for our business. We've seen a 40% increase in qualified leads."</p>
+                    <p class="font-semibold dark:text-white">- Sarah Johnson, Sales Director</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">"Their market research calls provided us with invaluable insights that helped shape our product strategy."</p>
+                    <p class="font-semibold dark:text-white">- Michael Brown, Product Manager</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-blue-600 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-8" data-aos="fade-up">Ready to Grow Your Business?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Let's discuss how our outbound calling services can help you achieve your business goals.
+            </p>
+            <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                Contact Us Today
+            </button>
+        </div>
+    </div>
+
+    <main-footer></main-footer>
+</body>
+</html> 

@@ -6,140 +6,25 @@
     <title>Modern Layout</title>
     <script defer src="/js/alpinejs-persist@3.x.x.min.js"></script>
     <script defer src="/js/alpinejs@3.x.x.min.js"></script>
+    <script defer src="/js/htmx.org@2.0.4.min.js"></script>
     <link rel="stylesheet" href="/css/output.css">
+    <!-- Add AOS CSS -->
+    <link href="/css/aos@2.3.1.css" rel="stylesheet">
+    <!-- Add AOS JS -->
+    <script src="/js/aos@2.3.1.js"></script>
+    <script defer src="/js/partials.js"></script>
 </head>
-<body x-data="{ isDark: $persist('isDark', false), isDrawerOpen: false }" class="bg-gray-50" :class="isDark ? 'dark' : ''">
-    <!-- Mobile Drawer Backdrop -->
-    <div x-show="isDrawerOpen" 
-         x-transition:enter="transition-opacity ease-linear duration-300"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition-opacity ease-linear duration-300"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-         @click="isDrawerOpen = false">
-    </div>
+<body x-data="{ isDark: $persist(false), isDrawerOpen: false,  lang: $persist('en'), t(key) { return window.translations[this.lang][key] || key; } }" class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" x-init="AOS.init()">
 
-    <!-- Mobile Drawer -->
-    <div x-show="isDrawerOpen"
-         x-transition:enter="transition ease-in-out duration-300 transform"
-         x-transition:enter-start="-translate-x-full"
-         x-transition:enter-end="translate-x-0"
-         x-transition:leave="transition ease-in-out duration-300 transform"
-         x-transition:leave-start="translate-x-0"
-         x-transition:leave-end="-translate-x-full"
-         class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-900 shadow-lg z-50 md:hidden">
-        <div class="p-4">
-            <div class="flex justify-between items-center mb-8">
-                <a href="/html/index.html" class="text-xl font-bold text-gray-800 dark:text-white">Your Brand</a>
-                <button @click="isDrawerOpen = false" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="flex flex-col space-y-4">
-                <a href="/html/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Home</a>
-                <div x-data="{ open: false }" class="relative">
-                    <button @click="open = !open" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center justify-between w-full">
-                        <span>Telemarketing</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div x-show="open" class="pl-4 mt-2 space-y-2">
-                        <a href="/html/telemarketing/outbound-calls.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Outbound Calls</a>
-                        <a href="/html/telemarketing/lead-generation.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Lead Generation</a>
-                        <a href="/html/telemarketing/customer-support.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Customer Support</a>
-                    </div>
-                </div>
-                <div x-data="{ open: false }" class="relative">
-                    <button @click="open = !open" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center justify-between w-full">
-                        <span>Developpement web</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div x-show="open" class="pl-4 mt-2 space-y-2">
-                        <a href="/html/web/web-design.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Web Design</a>
-                        <a href="/html/web/e-commerce.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">E-commerce</a>
-                        <a href="/html/web/custom-development.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Custom Development</a>
-                    </div>
-                </div>
-                <a href="/html/contact.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</a>
-            </div>
-        </div>
-    </div>
-
-    <nav class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 shadow-gray-400/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <!-- Logo/Brand -->
-                <div class="flex-shrink-0">
-                    <a href="/html/index.html" class="text-xl font-bold text-gray-800 dark:text-white">Your Brand</a>
-                </div>
-                
-                <!-- Navigation Links -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="/html/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Home</a>
-                    <div x-data="{ open: false }" class="relative">
-                        <button @click="open = !open" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
-                            Telemarketing
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div x-show="open" @click.away="open = false" class="z-20 absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="/html/telemarketing/outbound-calls.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Outbound Calls</a>
-                                <a href="/html/telemarketing/lead-generation.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Lead Generation</a>
-                                <a href="/html/telemarketing/customer-support.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Customer Support</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div x-data="{ open: false }" class="relative">
-                        <button @click="open = !open" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
-                            Developpement web
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div x-show="open" @click.away="open = false" class="z-20 absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="/html/web/web-design.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Web Design</a>
-                                <a href="/html/web/e-commerce.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">E-commerce</a>
-                                <a href="/html/web/custom-development.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Custom Development</a>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="/html/contact.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</a>
-                </div>
-
-                <div class="flex items-center space-x-4">
-                    <!-- Dark Mode Toggle -->
-                    <button @click="isDark = !isDark" class="bg-gray-200 dark:bg-gray-800 p-2 size-10 rounded-full cursor-pointer">
-                        <span x-show="!isDark" class="text-gray-800 dark:text-gray-200">🌙</span>
-                        <span x-show="isDark" class="text-gray-200 dark:text-gray-800">☀️</span>
-                    </button>
-
-                    <!-- Mobile Menu Button -->
-                    <button @click="isDrawerOpen = true" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+    
+    <nav-bar></nav-bar>
 
     <!-- Hero Section -->
     <div class="relative bg-white dark:bg-gray-900 overflow-hidden">
         <div class="max-w-7xl mx-auto">
             <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
                 <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-                    <div class="sm:text-center lg:text-left">
+                    <div class="sm:text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
                         <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
                             <span class="block">Welcome to</span>
                             <span class="block text-indigo-600 dark:text-indigo-400">Your Amazing Platform</span>
@@ -149,12 +34,12 @@
                         </p>
                         <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                             <div class="rounded-md shadow">
-                                <a href="/html/get-started" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                                <a href="/get-started" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
                                     Get Started
                                 </a>
                             </div>
                             <div class="mt-3 sm:mt-0 sm:ml-3">
-                                <a href="/html/learn-more" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
+                                <a href="/learn-more" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10">
                                     Learn More
                                 </a>
                             </div>
@@ -171,7 +56,7 @@
     <!-- Services Section -->
     <div class="py-16 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
                     Our Services
                 </h2>
@@ -182,7 +67,7 @@
 
             <div class="mt-12 grid gap-8 md:grid-cols-2">
                 <!-- Telemarketing Services -->
-                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
                     <div class="p-6">
                         <div class="flex items-center">
                             <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
@@ -216,7 +101,7 @@
                 </div>
 
                 <!-- Web Development Services -->
-                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
                     <div class="p-6">
                         <div class="flex items-center">
                             <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
@@ -255,7 +140,7 @@
     <!-- Detailed Telemarketing Services Section -->
     <div class="py-16 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
                     Telemarketing Solutions
                 </h2>
@@ -266,7 +151,7 @@
 
             <div class="mt-12 grid gap-8 md:grid-cols-3">
                 <!-- Outbound Calls -->
-                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
@@ -297,7 +182,7 @@
                 </div>
 
                 <!-- Lead Generation -->
-                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
@@ -328,7 +213,7 @@
                 </div>
 
                 <!-- Customer Support -->
-                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
@@ -364,7 +249,7 @@
     <!-- Detailed Web Development Services Section -->
     <div class="py-16 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
                     Web Development Solutions
                 </h2>
@@ -375,7 +260,7 @@
 
             <div class="mt-12 grid gap-8 md:grid-cols-3">
                 <!-- Web Design -->
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6">
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
@@ -406,7 +291,7 @@
                 </div>
 
                 <!-- E-commerce -->
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6">
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
@@ -437,7 +322,7 @@
                 </div>
 
                 <!-- Custom Development -->
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6">
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mb-4">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
@@ -473,7 +358,7 @@
     <!-- Statistics Section -->
     <div class="py-16 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
                     Our Impact in Numbers
                 </h2>
@@ -484,22 +369,22 @@
 
             <div class="mt-12 grid gap-8 md:grid-cols-4">
                 <!-- Stat 1 -->
-                <div class="text-center">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="text-4xl font-bold text-indigo-600 dark:text-indigo-400">500+</div>
                     <div class="mt-2 text-lg text-gray-600 dark:text-gray-300">Happy Clients</div>
                 </div>
                 <!-- Stat 2 -->
-                <div class="text-center">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="text-4xl font-bold text-indigo-600 dark:text-indigo-400">1000+</div>
                     <div class="mt-2 text-lg text-gray-600 dark:text-gray-300">Projects Completed</div>
                 </div>
                 <!-- Stat 3 -->
-                <div class="text-center">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
                     <div class="text-4xl font-bold text-indigo-600 dark:text-indigo-400">98%</div>
                     <div class="mt-2 text-lg text-gray-600 dark:text-gray-300">Client Satisfaction</div>
                 </div>
                 <!-- Stat 4 -->
-                <div class="text-center">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
                     <div class="text-4xl font-bold text-indigo-600 dark:text-indigo-400">15+</div>
                     <div class="mt-2 text-lg text-gray-600 dark:text-gray-300">Years Experience</div>
                 </div>
@@ -510,7 +395,7 @@
     <!-- Testimonials Section -->
     <div class="py-16 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
                     What Our Clients Say
                 </h2>
@@ -519,47 +404,47 @@
                 </p>
             </div>
 
-            <div class="mt-12 grid gap-8 md:grid-cols-3">
+            <div class="mt-12 grid gap-8 lg:grid-cols-3">
                 <!-- Testimonial 1 -->
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center mb-4">
                         <div class="h-12 w-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
                             <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">JD</span>
                         </div>
-                        <div class="ml-4">
+                        <div class="ml-4 flex-1">
                             <h4 class="text-lg font-bold text-gray-900 dark:text-white">John Doe</h4>
-                            <p class="text-gray-600 dark:text-gray-300">CEO, TechCorp</p>
+                            <p class="text-gray-600 dark:text-gray-300">Marketing Director, GrowthTech</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300">"The telemarketing team has transformed our lead generation process. Their professionalism and results speak for themselves."</p>
+                    <p class="text-gray-600 dark:text-gray-300">"The telemarketing team has transformed our lead generation process. Their professionalism and results speak for themselves. We've seen a 40% increase in qualified leads since partnering with them."</p>
                 </div>
 
                 <!-- Testimonial 2 -->
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center mb-4">
                         <div class="h-12 w-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
                             <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">AS</span>
                         </div>
-                        <div class="ml-4">
+                        <div class="ml-4 flex-1">
                             <h4 class="text-lg font-bold text-gray-900 dark:text-white">Alice Smith</h4>
-                            <p class="text-gray-600 dark:text-gray-300">Marketing Director, RetailPlus</p>
+                            <p class="text-gray-600 dark:text-gray-300">E-commerce Manager, RetailPlus</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300">"The web development team delivered an exceptional e-commerce platform that has significantly boosted our online sales."</p>
+                    <p class="text-gray-600 dark:text-gray-300">"Their web development team created an exceptional e-commerce platform for us. The attention to detail and user experience is outstanding. Our online sales have doubled since the launch."</p>
                 </div>
 
                 <!-- Testimonial 3 -->
-                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center mb-4">
                         <div class="h-12 w-12 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
                             <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">RJ</span>
                         </div>
-                        <div class="ml-4">
+                        <div class="ml-4 flex-1">
                             <h4 class="text-lg font-bold text-gray-900 dark:text-white">Robert Johnson</h4>
-                            <p class="text-gray-600 dark:text-gray-300">Founder, StartupX</p>
+                            <p class="text-gray-600 dark:text-gray-300">Operations Manager, ServiceFirst</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300">"Their custom development solutions helped us scale our business efficiently. Highly recommended!"</p>
+                    <p class="text-gray-600 dark:text-gray-300">"The customer support team has been instrumental in improving our service quality. Their 24/7 availability and quick response times have significantly enhanced our customer satisfaction ratings."</p>
                 </div>
             </div>
         </div>
@@ -568,7 +453,7 @@
     <!-- FAQ Section -->
     <div class="py-16 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
                     Frequently Asked Questions
                 </h2>
@@ -580,7 +465,7 @@
             <div class="mt-12 max-w-3xl mx-auto">
                 <div class="space-y-6">
                     <!-- FAQ Item 1 -->
-                    <div x-data="{ open: false }" class="bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div x-data="{ open: false }" class="bg-gray-50 dark:bg-gray-800 rounded-lg" data-aos="fade-up" data-aos-delay="100">
                         <button @click="open = !open" class="w-full px-6 py-4 text-left focus:outline-none">
                             <div class="flex items-center justify-between">
                                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">What services do you offer?</h3>
@@ -595,7 +480,7 @@
                     </div>
 
                     <!-- FAQ Item 2 -->
-                    <div x-data="{ open: false }" class="bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div x-data="{ open: false }" class="bg-gray-50 dark:bg-gray-800 rounded-lg" data-aos="fade-up" data-aos-delay="200">
                         <button @click="open = !open" class="w-full px-6 py-4 text-left focus:outline-none">
                             <div class="flex items-center justify-between">
                                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">How long does a typical project take?</h3>
@@ -610,7 +495,7 @@
                     </div>
 
                     <!-- FAQ Item 3 -->
-                    <div x-data="{ open: false }" class="bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div x-data="{ open: false }" class="bg-gray-50 dark:bg-gray-800 rounded-lg" data-aos="fade-up" data-aos-delay="300">
                         <button @click="open = !open" class="w-full px-6 py-4 text-left focus:outline-none">
                             <div class="flex items-center justify-between">
                                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">Do you offer ongoing support?</h3>
@@ -625,7 +510,7 @@
                     </div>
 
                     <!-- FAQ Item 4 -->
-                    <div x-data="{ open: false }" class="bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <div x-data="{ open: false }" class="bg-gray-50 dark:bg-gray-800 rounded-lg" data-aos="fade-up" data-aos-delay="400">
                         <button @click="open = !open" class="w-full px-6 py-4 text-left focus:outline-none">
                             <div class="flex items-center justify-between">
                                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">What is your pricing structure?</h3>
@@ -644,21 +529,22 @@
     </div>
 
     <!-- Call to Action Section -->
-    <div class="bg-indigo-700">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+    <div class="bg-indigo-700" >
+        <div data-aos="fade-up" data-aos-duration="1000" class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
             <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                 <span class="block">Ready to get started?</span>
                 <span class="block text-indigo-200">Contact us today.</span>
             </h2>
             <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
                 <div class="inline-flex rounded-md shadow">
-                    <a href="/html/contact.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
+                    <a href="/contact.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
                         Get in touch
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <main-footer></main-footer>
 </body>
 </html>

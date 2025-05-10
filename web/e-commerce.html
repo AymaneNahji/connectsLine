@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Solutions - Professional Online Store Development</title>
+    <script defer src="/js/alpinejs-persist@3.x.x.min.js"></script>
+    <script defer src="/js/alpinejs@3.x.x.min.js"></script>
+    <script defer src="/js/htmx.org@2.0.4.min.js"></script>
+    <link rel="stylesheet" href="/css/output.css">
+    <!-- Add AOS CSS -->
+    <link href="/css/aos@2.3.1.css" rel="stylesheet">
+    <!-- Add AOS JS -->
+    <script src="/js/aos@2.3.1.js"></script>
+    <script defer src="/js/partials.js"></script>
+</head>
+    <body x-data="{ isDark: $persist(false), isDrawerOpen: false,  lang: $persist('en'), t(key) { return window.translations[this.lang][key] || key; } }" class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" x-init="AOS.init()">
+    <nav-bar></nav-bar>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold mb-6" data-aos="fade-up">E-commerce Solutions</h1>
+                <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Transform your business with our comprehensive e-commerce solutions designed to drive sales and enhance customer experience.
+                </p>
+                <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                    Start Your Store
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Our Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service Card 1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up">
+                <div class="text-blue-600 mb-4">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Online Store Setup</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Custom e-commerce platforms tailored to your business needs, built with modern technologies and best practices.
+                </p>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-blue-600 mb-4">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Payment Integration</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Secure payment gateways and multiple payment options to provide a seamless checkout experience for your customers.
+                </p>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-blue-600 mb-4">
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Inventory Management</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Efficient stock tracking and order management systems to streamline your operations and reduce overhead costs.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="bg-gray-100 dark:bg-gray-900 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Why Choose Our E-commerce Solutions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up">
+                    <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-blue-600">24/7</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Always Open</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Your store never closes</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-blue-600">100%</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Secure</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Safe payment processing</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-blue-600">50%+</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Growth</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Average revenue increase</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl font-bold text-blue-600">99.9%</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Uptime</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Reliable platform</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Our E-commerce Process</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center" data-aos="fade-up">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">1</div>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white">Consultation</h3>
+                <p class="text-gray-600 dark:text-gray-300">Understanding your business needs</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">2</div>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white">Design</h3>
+                <p class="text-gray-600 dark:text-gray-300">Creating your store's look and feel</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">3</div>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white">Development</h3>
+                <p class="text-gray-600 dark:text-gray-300">Building your online store</p>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">4</div>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white">Launch</h3>
+                <p class="text-gray-600 dark:text-gray-300">Going live and support</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="bg-gray-100 dark:bg-gray-900 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">What Our Clients Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">"Our online store has seen a 200% increase in sales since launching. The platform is incredibly user-friendly and reliable."</p>
+                    <p class="font-semibold dark:text-white">- Emma Thompson, Fashion Boutique Owner</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">"The payment integration is seamless, and the inventory management system has saved us countless hours."</p>
+                    <p class="font-semibold dark:text-white">- James Wilson, Electronics Store</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400">★★★★★</div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">"Their e-commerce solution has transformed our business. The customer experience is outstanding."</p>
+                    <p class="font-semibold dark:text-white">- Lisa Chen, Home Goods Store</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-blue-600 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-8" data-aos="fade-up">Ready to Launch Your Online Store?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Let's discuss how our e-commerce solutions can help you grow your business online.
+            </p>
+            <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                Start Your Project
+            </button>
+        </div>
+    </div>
+
+    <main-footer></main-footer>
+</body>
+</html> 
