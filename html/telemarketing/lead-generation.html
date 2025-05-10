@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Generation - Your Brand</title>
+    <script defer src="/js/alpinejs-persist@3.x.x.min.js"></script>
+    <script defer src="/js/alpinejs@3.x.x.min.js"></script>
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+<body x-data="{ isDark: $persist('isDark', false), isDrawerOpen: false }" class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''">
+    <!-- Mobile Drawer Backdrop -->
+    <div x-show="isDrawerOpen" 
+         x-transition:enter="transition-opacity ease-linear duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition-opacity ease-linear duration-300"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+         @click="isDrawerOpen = false">
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div x-show="isDrawerOpen"
+         x-transition:enter="transition ease-in-out duration-300 transform"
+         x-transition:enter-start="-translate-x-full"
+         x-transition:enter-end="translate-x-0"
+         x-transition:leave="transition ease-in-out duration-300 transform"
+         x-transition:leave-start="translate-x-0"
+         x-transition:leave-end="-translate-x-full"
+         class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-900 shadow-lg z-50 md:hidden">
+        <div class="p-4">
+            <div class="flex justify-between items-center mb-8">
+                <a href="/html/index.html" class="text-xl font-bold text-gray-800 dark:text-white">Your Brand</a>
+                <button @click="isDrawerOpen = false" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <a href="/html/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Home</a>
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center justify-between w-full">
+                        <span>Telemarketing</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div x-show="open" class="pl-4 mt-2 space-y-2">
+                        <a href="/html/telemarketing/outbound-calls.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Outbound Calls</a>
+                        <a href="/html/telemarketing/lead-generation.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Lead Generation</a>
+                        <a href="/html/telemarketing/customer-support.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Customer Support</a>
+                    </div>
+                </div>
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center justify-between w-full">
+                        <span>Developpement web</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div x-show="open" class="pl-4 mt-2 space-y-2">
+                        <a href="/html/web/web-design.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Web Design</a>
+                        <a href="/html/web/e-commerce.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">E-commerce</a>
+                        <a href="/html/web/custom-development.html" class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Custom Development</a>
+                    </div>
+                </div>
+                <a href="/html/contact.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 shadow-gray-400/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo/Brand -->
+                <div class="flex-shrink-0">
+                    <a href="/html/index.html" class="text-xl font-bold text-gray-800 dark:text-white">Your Brand</a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="/html/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Home</a>
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
+                            Telemarketing
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="z-20 absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="/html/telemarketing/outbound-calls.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Outbound Calls</a>
+                                <a href="/html/telemarketing/lead-generation.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Lead Generation</a>
+                                <a href="/html/telemarketing/customer-support.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Customer Support</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
+                            Developpement web
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="z-20 absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="/html/web/web-design.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Web Design</a>
+                                <a href="/html/web/e-commerce.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">E-commerce</a>
+                                <a href="/html/web/custom-development.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Custom Development</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/html/contact.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <!-- Dark Mode Toggle -->
+                    <button @click="isDark = !isDark" class="bg-gray-200 dark:bg-gray-800 p-2 size-10 rounded-full cursor-pointer">
+                        <span x-show="!isDark" class="text-gray-800 dark:text-gray-200">🌙</span>
+                        <span x-show="isDark" class="text-gray-200 dark:text-gray-800">☀️</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button @click="isDrawerOpen = true" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-8">Lead Generation Services</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-12">
+                Generate high-quality leads and grow your business with our targeted lead generation services.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service Card 1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">B2B Lead Generation</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Targeted business-to-business lead generation to connect with decision-makers.
+                </p>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Lead Qualification</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Thorough qualification process to ensure high-quality, sales-ready leads.
+                </p>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Lead Nurturing</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    Strategic follow-up campaigns to convert leads into loyal customers.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
