@@ -15,3 +15,15 @@ class MainFooter extends HTMLElement {
     }
 } 
 customElements.define('main-footer', MainFooter);
+
+class TranslationLoading extends HTMLElement {
+    connectedCallback() {
+        fetch('/partials/translation-loading.html')
+            .then(res => res.text())
+            .then(html => this.innerHTML = html);
+    }
+}
+customElements.define('translation-loading', TranslationLoading);
+
+
+

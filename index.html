@@ -21,19 +21,24 @@
         isDrawerOpen: false,  
         translationIsLoading: false,
         lang: $persist('en'),
+        showTranslationLoading: false,
+        translations: {},
         t(key) {
             if(this.translationIsLoading) return 'Waiting for translations...';
-            return this.translations[key] || 'None'; 
+            return this.translations[this.lang][key] || 'None'; 
         },
         loadTranslations() {
+            if(this.translations[this.lang]) return;
             this.translationIsLoading = true;
+            this.showTranslationLoading = true;
             fetch(`/locales/${this.lang}.json`)
             .then(response => response.json())
             .then(data => {
-                this.translations = data;
+                this.translations[this.lang] = data;
             })
             .finally(() => {
                 this.translationIsLoading = false;
+                this.showTranslationLoading = false;
             });
         } 
     }
@@ -42,8 +47,8 @@
     x-init="AOS.init();loadTranslations()"
     :dir="lang === 'ar' ? 'rtl' : 'ltr'"
 >
+    <translation-loading></translation-loading>
 
-    
     <nav-bar></nav-bar>
 
     <!-- Hero Section -->

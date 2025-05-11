@@ -14,33 +14,39 @@
     <script src="/js/aos@2.3.1.js"></script>
     <script defer src="/js/partials.js"></script>
 </head>
-    <body 
-        x-data="{ 
-            isDark: $persist(false), 
-            isDrawerOpen: false,  
-            translationIsLoading: false,
-            lang: $persist('en'),
-            t(key) {
-                if(this.translationIsLoading) return 'Waiting for translations...';
-                return this.translations[key] || 'None'; 
-            },
-            loadTranslations() {
-                this.translationIsLoading = true;
-                fetch(`/locales/${this.lang}.json`)
-                .then(response => response.json())
-                .then(data => {
-                    this.translations = data;
-                })
-                .finally(() => {
-                    this.translationIsLoading = false;
-                });
-            } 
-        }
-        " 
-        class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" 
-        x-init="AOS.init();loadTranslations()"
-        :dir="lang === 'ar' ? 'rtl' : 'ltr'"
-    >
+<body 
+    x-data="{ 
+        isDark: $persist(false), 
+        isDrawerOpen: false,  
+        translationIsLoading: false,
+        lang: $persist('en'),
+        showTranslationLoading: false,
+        translations: {},
+        t(key) {
+            if(this.translationIsLoading) return 'Waiting for translations...';
+            return this.translations[this.lang][key] || 'None'; 
+        },
+        loadTranslations() {
+            if(this.translations[this.lang]) return;
+            this.translationIsLoading = true;
+            this.showTranslationLoading = true;
+            fetch(`/locales/${this.lang}.json`)
+            .then(response => response.json())
+            .then(data => {
+                this.translations[this.lang] = data;
+            })
+            .finally(() => {
+                this.translationIsLoading = false;
+                this.showTranslationLoading = false;
+            });
+        } 
+    }
+    " 
+    class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" 
+    x-init="AOS.init();loadTranslations()"
+    :dir="lang === 'ar' ? 'rtl' : 'ltr'"
+>
+    <translation-loading></translation-loading>
     <nav-bar></nav-bar>
 
     <!-- Hero Section -->
