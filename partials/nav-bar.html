@@ -17,7 +17,7 @@
     class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-900 shadow-lg z-50 md:hidden">
     <div class="p-4">
         <div class="flex justify-between items-center mb-8">
-            <a href="index.html" class="text-xl font-bold text-gray-800 dark:text-white">
+            <a href="/index.html" class="text-xl font-bold text-gray-800 dark:text-white">
                 Your Brand
             </a>
             <button @click="isDrawerOpen = false"
@@ -29,7 +29,7 @@
             </button>
         </div>
         <div class="flex flex-col space-y-4">
-            <a href="index.html"
+            <a href="/index.html"
                 class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Home')"></a>
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open"
@@ -40,11 +40,11 @@
                     </svg>
                 </button>
                 <div x-show="open" class="pl-4 mt-2 space-y-2">
-                    <a href="telemarketing/outbound-calls.html"
+                    <a href="/telemarketing/outbound-calls.html"
                         class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Outbound Calls')"></a>
-                    <a href="telemarketing/lead-generation.html"
+                    <a href="/telemarketing/lead-generation.html"
                         class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Lead Generation')"></a>
-                    <a href="telemarketing/customer-support.html"
+                    <a href="/telemarketing/customer-support.html"
                         class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Customer Support')"></a>
                 </div>
             </div>
@@ -57,15 +57,15 @@
                     </svg>
                 </button>
                 <div x-show="open" class="pl-4 mt-2 space-y-2">
-                    <a href="web/web-design.html"
+                    <a href="/web/web-design.html"
                         class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Web Design')"></a>
-                    <a href="web/e-commerce.html"
+                    <a href="/web/e-commerce.html"
                         class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('E-commerce')"></a>
-                    <a href="web/custom-development.html"
+                    <a href="/web/custom-development.html"
                         class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Custom Development')"></a>
                 </div>
             </div>
-            <a href="contact.html"
+            <a href="/contact.html"
                 class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Contact')"></a>
         </div>
     </div>
@@ -82,7 +82,7 @@
     class="fixed inset-y-0 right-0 w-64 bg-white dark:bg-gray-900 shadow-lg z-50 md:hidden">
     <div class="p-4">
         <div class="flex justify-between items-center mb-8">
-            <a href="index.html" class="text-xl font-bold text-gray-800 dark:text-white" >
+            <a href="/index.html" class="text-xl font-bold text-gray-800 dark:text-white" >
                 Your Brand
             </a>
             <button @click="isDrawerOpen = false"
@@ -94,7 +94,7 @@
             </button>
         </div>
         <div class="flex flex-col space-y-4">
-            <a href="../index.html"
+            <a href="/index.html"
                 class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Home')"></a>
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open"
@@ -105,11 +105,11 @@
                     </svg>
                 </button>
                 <div x-show="open" class="pl-4 mt-2 space-y-2">
-                    <a href="../telemarketing/outbound-calls.html"
+                    <a href="/telemarketing/outbound-calls.html"
                         class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Outbound Calls')"></a>
-                    <a href="../telemarketing/lead-generation.html"
+                    <a href="/telemarketing/lead-generation.html"
                         class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Lead Generation')"></a>
-                    <a href="../telemarketing/customer-support.html"
+                    <a href="/telemarketing/customer-support.html"
                         class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Customer Support')"></a>
                 </div>
             </div>
@@ -142,14 +142,14 @@
         <div class="flex justify-between h-16 items-center">
             <!-- Logo/Brand -->
             <div class="flex-shrink-0">
-                <a href="index.html" class="text-xl font-bold text-gray-800 dark:text-white">
+                <a href="../index.html" class="text-xl font-bold text-gray-800 dark:text-white">
                     Your Brand
                 </a>
             </div>
 
             <!-- Navigation Links -->
             <div class="hidden md:flex gap-8">
-                <a href="index.html"
+                <a href="../index.html"
                     class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Home')"></a>
                 <div x-data="{ open: false }" class="relative">
                     <button @click="open = !open"
@@ -163,11 +163,11 @@
                     <div x-show="open" @click.away="open = false"
                         class="z-20 absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
                         <div class="py-1">
-                            <a href="telemarketing/outbound-calls.html"
+                            <a href="../telemarketing/outbound-calls.html"
                                 class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('Outbound Calls')"></a>
-                            <a href="telemarketing/lead-generation.html"
+                            <a href="../telemarketing/lead-generation.html"
                                 class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('Lead Generation')"></a>
-                            <a href="telemarketing/customer-support.html"
+                            <a href="../telemarketing/customer-support.html"
                                 class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('Customer Support')"></a>
                         </div>
                     </div>
@@ -184,16 +184,16 @@
                     <div x-show="open" @click.away="open = false"
                         class="z-20 absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
                         <div class="py-1">
-                            <a href="web/web-design.html"
+                            <a href="../web/web-design.html"
                                 class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('Web Design')"></a>
-                            <a href="web/e-commerce.html"
+                            <a href="../web/e-commerce.html"
                                 class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('E-commerce')"></a>
-                            <a href="web/custom-development.html"
+                            <a href="../web/custom-development.html"
                                 class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('Custom Development')"></a>
                         </div>
                     </div>
                 </div>
-                <a href="contact.html"
+                <a href="../contact.html"
                     class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Contact')"></a>
             </div>
 
