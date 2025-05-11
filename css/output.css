@@ -1042,6 +1042,10 @@ video {
   gap: 1rem;
 }
 
+.gap-6 {
+  gap: 1.5rem;
+}
+
 .gap-8 {
   gap: 2rem;
 }
@@ -1345,12 +1349,12 @@ video {
   padding-left: 1rem;
 }
 
-.pt-8 {
-  padding-top: 2rem;
-}
-
 .pr-4 {
   padding-right: 1rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
 }
 
 .text-left {
@@ -1434,16 +1438,16 @@ video {
   line-height: 1.5 !important;
 }
 
+.\!leading-tight {
+  line-height: 1.25 !important;
+}
+
 .leading-normal {
   line-height: 1.5;
 }
 
 .leading-relaxed {
   line-height: 1.625;
-}
-
-.\!leading-tight {
-  line-height: 1.25 !important;
 }
 
 .tracking-tight {
