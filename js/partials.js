@@ -2,7 +2,12 @@ class NavBar extends HTMLElement {
     connectedCallback() {
         fetch('../partials/nav-bar.html')
             .then(res => res.text())
-            .then(html => this.innerHTML = html);
+            .then(html => this.innerHTML = html)
+            .catch(()=>{
+                fetch('partials/nav-bar.html')
+                .then(res => res.text())
+                .then(html => this.innerHTML = html);
+            })
     }
 }
 customElements.define('nav-bar', NavBar);
