@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Support Services - Professional Telemarketing Solutions</title>
+    <title x-text="t('Customer Support Services - Professional Telemarketing Solutions')">Customer Support Services - Professional Telemarketing Solutions</title>
     <script defer src="/js/alpinejs-persist@3.x.x.min.js"></script>
     <script defer src="/js/alpinejs@3.x.x.min.js"></script>
     <script defer src="/js/htmx.org@2.0.4.min.js"></script>
@@ -14,18 +14,44 @@
     <script src="/js/aos@2.3.1.js"></script>
     <script defer src="/js/partials.js"></script>
 </head>
-<body x-data="{ isDark: $persist(false), isDrawerOpen: false,  lang: $persist('en'), t(key) { return window.translations[this.lang][key] || key; } }" class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" x-init="AOS.init()">
+<body 
+    x-data="{ 
+        isDark: $persist(false), 
+        isDrawerOpen: false,  
+        translationIsLoading: false,
+        lang: $persist('en'),
+        t(key) {
+            if(this.translationIsLoading) return 'Waiting for translations...';
+            return this.translations[key] || 'None'; 
+        },
+        loadTranslations() {
+            this.translationIsLoading = true;
+            fetch(`/locales/${this.lang}.json`)
+            .then(response => response.json())
+            .then(data => {
+                this.translations = data;
+            })
+            .finally(() => {
+                this.translationIsLoading = false;
+            });
+        } 
+    }
+    " 
+    class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" 
+    x-init="AOS.init();loadTranslations()"
+    :dir="lang === 'ar' ? 'rtl' : 'ltr'"
+>
     <nav-bar></nav-bar>
 
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h1 class="text-5xl font-bold mb-6" data-aos="fade-up">Customer Support Services</h1>
-                <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <h1 class="text-5xl font-bold mb-6" data-aos="fade-up" x-text="t('Customer Support Services')">Customer Support Services</h1>
+                <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" x-text="t('Provide exceptional customer support with our comprehensive service solutions. We help you deliver outstanding customer experiences and build lasting relationships.')">
                     Provide exceptional customer support with our comprehensive service solutions. We help you deliver outstanding customer experiences and build lasting relationships.
                 </p>
-                <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors" data-aos="fade-up" data-aos-delay="200" x-text="t('Get Started Today')">
                     Get Started Today
                 </button>
             </div>
@@ -34,7 +60,7 @@
 
     <!-- Services Section -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Our Services</h2>
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up" x-text="t('Our Services')">Our Services</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Service Card 1 -->
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up">
@@ -43,8 +69,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">24/7 Support</h3>
-                <p class="text-gray-600 dark:text-gray-300">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4" x-text="t('24/7 Support')">24/7 Support</h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Round-the-clock customer support to address inquiries and issues anytime, ensuring your customers always have access to help when they need it.')">
                     Round-the-clock customer support to address inquiries and issues anytime, ensuring your customers always have access to help when they need it.
                 </p>
             </div>
@@ -57,8 +83,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Technical Support</h3>
-                <p class="text-gray-600 dark:text-gray-300">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4" x-text="t('Technical Support')">Technical Support</h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Expert technical assistance for product and service-related issues, with trained specialists ready to solve complex problems efficiently.')">
                     Expert technical assistance for product and service-related issues, with trained specialists ready to solve complex problems efficiently.
                 </p>
             </div>
@@ -70,8 +96,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Customer Success</h3>
-                <p class="text-gray-600 dark:text-gray-300">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4" x-text="t('Customer Success')">Customer Success</h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Proactive support to ensure customer satisfaction and retention, helping customers achieve their goals with your products and services.')">
                     Proactive support to ensure customer satisfaction and retention, helping customers achieve their goals with your products and services.
                 </p>
             </div>
@@ -81,35 +107,35 @@
     <!-- Benefits Section -->
     <div class="bg-gray-100 dark:bg-gray-900 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Why Choose Our Services</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up" x-text="t('Why Choose Our Services')">Why Choose Our Services</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center" data-aos="fade-up">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">24/7</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Always Available</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Round-the-clock support for your customers</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Always Available')">Always Available</h3>
+                    <p class="text-gray-600 dark:text-gray-300" x-text="t('Round-the-clock support for your customers')">Round-the-clock support for your customers</p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">98%</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Satisfaction Rate</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Consistently high customer satisfaction scores</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Satisfaction Rate')">Satisfaction Rate</h3>
+                    <p class="text-gray-600 dark:text-gray-300" x-text="t('Consistently high customer satisfaction scores')">Consistently high customer satisfaction scores</p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">15s</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Response Time</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Quick response to customer inquiries</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Response Time')">Response Time</h3>
+                    <p class="text-gray-600 dark:text-gray-300" x-text="t('Quick response to customer inquiries')">Quick response to customer inquiries</p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="300">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">100%</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Quality Assurance</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Rigorous quality control and monitoring</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Quality Assurance')">Quality Assurance</h3>
+                    <p class="text-gray-600 dark:text-gray-300" x-text="t('Rigorous quality control and monitoring')">Rigorous quality control and monitoring</p>
                 </div>
             </div>
         </div>
@@ -117,27 +143,27 @@
 
     <!-- Process Section -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Our Process</h2>
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up" x-text="t('Our Process')">Our Process</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="text-center" data-aos="fade-up">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">1</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Assessment</h3>
-                <p class="text-gray-600 dark:text-gray-300">We evaluate your support needs and requirements</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Assessment')">Assessment</h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('We evaluate your support needs and requirements')">We evaluate your support needs and requirements</p>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">2</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Training</h3>
-                <p class="text-gray-600 dark:text-gray-300">Our team is trained on your products and services</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Training')">Training</h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Our team is trained on your products and services')">Our team is trained on your products and services</p>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">3</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Implementation</h3>
-                <p class="text-gray-600 dark:text-gray-300">Seamless integration with your existing systems</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Implementation')">Implementation</h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Seamless integration with your existing systems')">Seamless integration with your existing systems</p>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="300">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">4</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Monitoring</h3>
-                <p class="text-gray-600 dark:text-gray-300">Continuous quality monitoring and improvement</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Monitoring')">Monitoring</h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Continuous quality monitoring and improvement')">Continuous quality monitoring and improvement</p>
             </div>
         </div>
     </div>
@@ -145,28 +171,28 @@
     <!-- Testimonials Section -->
     <div class="bg-gray-100 dark:bg-gray-900 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">What Our Clients Say</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up" x-text="t('What Our Clients Say')">What Our Clients Say</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400">★★★★★</div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">"Their 24/7 support team has been instrumental in maintaining our customer satisfaction levels. The response time is impressive."</p>
-                    <p class="font-semibold dark:text-white">- Emily Parker, Customer Success Director</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4" x-text="t('Their 24/7 support team has been instrumental in maintaining our customer satisfaction levels. The response time is impressive.')">"Their 24/7 support team has been instrumental in maintaining our customer satisfaction levels. The response time is impressive."</p>
+                    <p class="font-semibold dark:text-white" x-text="t('- Emily Parker, Customer Success Director')">- Emily Parker, Customer Success Director</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400">★★★★★</div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">"The technical support team's expertise has significantly reduced our resolution time. They're truly knowledgeable."</p>
-                    <p class="font-semibold dark:text-white">- James Wilson, IT Manager</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4" x-text="t('The technical support team\'s expertise has significantly reduced our resolution time. They\'re truly knowledgeable.')">"The technical support team's expertise has significantly reduced our resolution time. They're truly knowledgeable."</p>
+                    <p class="font-semibold dark:text-white" x-text="t('- James Wilson, IT Manager')">- James Wilson, IT Manager</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400">★★★★★</div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">"Their customer success program has helped us increase our retention rate by 35%. Outstanding service!"</p>
-                    <p class="font-semibold dark:text-white">- Maria Rodriguez, Business Owner</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4" x-text="t('Their customer success program has helped us increase our retention rate by 35%. Outstanding service!')">"Their customer success program has helped us increase our retention rate by 35%. Outstanding service!"</p>
+                    <p class="font-semibold dark:text-white" x-text="t('- Maria Rodriguez, Business Owner')">- Maria Rodriguez, Business Owner</p>
                 </div>
             </div>
         </div>
@@ -175,11 +201,11 @@
     <!-- CTA Section -->
     <div class="bg-indigo-600 text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-8" data-aos="fade-up">Ready to Enhance Your Customer Support?</h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" x-text="t('Ready to Enhance Your Customer Support?')">Ready to Enhance Your Customer Support?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" x-text="t('Let\'s discuss how our customer support services can help you deliver exceptional customer experiences.')">
                 Let's discuss how our customer support services can help you deliver exceptional customer experiences.
             </p>
-            <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
+            <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors" data-aos="fade-up" data-aos-delay="200" x-text="t('Contact Us Today')">
                 Contact Us Today
             </button>
         </div>

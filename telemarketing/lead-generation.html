@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lead Generation Services - Professional Telemarketing Solutions</title>
+    <title><span x-text="t('Lead Generation Services - Professional Telemarketing Solutions')"></span></title>
     <script defer src="/js/alpinejs-persist@3.x.x.min.js"></script>
     <script defer src="/js/alpinejs@3.x.x.min.js"></script>
     <script defer src="/js/htmx.org@2.0.4.min.js"></script>
@@ -14,19 +14,45 @@
     <script src="/js/aos@2.3.1.js"></script>
     <script defer src="/js/partials.js"></script>
 </head>
-    <body x-data="{ isDark: $persist(false), isDrawerOpen: false,  lang: $persist('en'), t(key) { return window.translations[this.lang][key] || key; } }" class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" x-init="AOS.init()">
+<body 
+    x-data="{ 
+        isDark: $persist(false), 
+        isDrawerOpen: false,  
+        translationIsLoading: false,
+        lang: $persist('en'),
+        t(key) {
+            if(this.translationIsLoading) return 'Waiting for translations...';
+            return this.translations[key] || 'None'; 
+        },
+        loadTranslations() {
+            this.translationIsLoading = true;
+            fetch(`/locales/${this.lang}.json`)
+            .then(response => response.json())
+            .then(data => {
+                this.translations = data;
+            })
+            .finally(() => {
+                this.translationIsLoading = false;
+            });
+        } 
+    }
+    " 
+    class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" 
+    x-init="AOS.init();loadTranslations()"
+    :dir="lang === 'ar' ? 'rtl' : 'ltr'"
+>
     <nav-bar></nav-bar>
 
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h1 class="text-5xl font-bold mb-6" data-aos="fade-up">Lead Generation Services</h1>
+                <h1 class="text-5xl font-bold mb-6" data-aos="fade-up"><span x-text="t('Lead Generation Services')"></span></h1>
                 <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Generate high-quality leads and grow your business with our targeted lead generation services. We help you connect with your ideal customers and achieve your business objectives.
+                    <span x-text="t('Generate high-quality leads and grow your business with our targeted lead generation services. We help you connect with your ideal customers and achieve your business objectives.')"></span>
                 </p>
                 <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
-                    Get Started Today
+                    <span x-text="t('Get Started Today')"></span>
                 </button>
             </div>
         </div>
@@ -34,7 +60,7 @@
 
     <!-- Services Section -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Our Services</h2>
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up"><span x-text="t('Our Services')"></span></h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Service Card 1 -->
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up">
@@ -43,9 +69,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">B2B Lead Generation</h3>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4"><span x-text="t('B2B Lead Generation')"></span></h3>
                 <p class="text-gray-600 dark:text-gray-300">
-                    Targeted business-to-business lead generation to connect with decision-makers and key stakeholders in your industry.
+                    <span x-text="t('Targeted business-to-business lead generation to connect with decision-makers and key stakeholders in your industry.')"></span>
                 </p>
             </div>
 
@@ -56,9 +82,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Lead Qualification</h3>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4"><span x-text="t('Lead Qualification')"></span></h3>
                 <p class="text-gray-600 dark:text-gray-300">
-                    Thorough qualification process to ensure high-quality, sales-ready leads that match your ideal customer profile.
+                    <span x-text="t('Thorough qualification process to ensure high-quality, sales-ready leads that match your ideal customer profile.')"></span>
                 </p>
             </div>
 
@@ -69,9 +95,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Lead Nurturing</h3>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4"><span x-text="t('Lead Nurturing')"></span></h3>
                 <p class="text-gray-600 dark:text-gray-300">
-                    Strategic follow-up campaigns to convert leads into loyal customers through personalized engagement.
+                    <span x-text="t('Strategic follow-up campaigns to convert leads into loyal customers through personalized engagement.')"></span>
                 </p>
             </div>
         </div>
@@ -80,35 +106,35 @@
     <!-- Benefits Section -->
     <div class="bg-gray-100 dark:bg-gray-900 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Why Choose Our Services</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up"><span x-text="t('Why Choose Our Services')"></span></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center" data-aos="fade-up">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">95%</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Quality Leads</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Highly qualified leads that match your target criteria</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white"><span x-text="t('Quality Leads')"></span></h3>
+                    <p class="text-gray-600 dark:text-gray-300"><span x-text="t('Highly qualified leads that match your target criteria')"></span></p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">50+</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Industries Served</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Extensive experience across various business sectors</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white"><span x-text="t('Industries Served')"></span></h3>
+                    <p class="text-gray-600 dark:text-gray-300"><span x-text="t('Extensive experience across various business sectors')"></span></p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">24/7</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Support</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Round-the-clock assistance for all your needs</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white"><span x-text="t('Support')"></span></h3>
+                    <p class="text-gray-600 dark:text-gray-300"><span x-text="t('Round-the-clock assistance for all your needs')"></span></p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="300">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">100%</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Customized Approach</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Tailored strategies for your specific business needs</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white"><span x-text="t('Customized Approach')"></span></h3>
+                    <p class="text-gray-600 dark:text-gray-300"><span x-text="t('Tailored strategies for your specific business needs')"></span></p>
                 </div>
             </div>
         </div>
@@ -116,27 +142,27 @@
 
     <!-- Process Section -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Our Process</h2>
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up"><span x-text="t('Our Process')"></span></h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="text-center" data-aos="fade-up">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">1</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Analysis</h3>
-                <p class="text-gray-600 dark:text-gray-300">We analyze your target market and ideal customer profile</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white"><span x-text="t('Analysis')"></span></h3>
+                <p class="text-gray-600 dark:text-gray-300"><span x-text="t('We analyze your target market and ideal customer profile')"></span></p>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">2</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Strategy</h3>
-                <p class="text-gray-600 dark:text-gray-300">Develop a customized lead generation strategy</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white"><span x-text="t('Strategy')"></span></h3>
+                <p class="text-gray-600 dark:text-gray-300"><span x-text="t('Develop a customized lead generation strategy')"></span></p>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">3</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Execution</h3>
-                <p class="text-gray-600 dark:text-gray-300">Implement the strategy with our expert team</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white"><span x-text="t('Execution')"></span></h3>
+                <p class="text-gray-600 dark:text-gray-300"><span x-text="t('Implement the strategy with our expert team')"></span></p>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="300">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">4</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Optimization</h3>
-                <p class="text-gray-600 dark:text-gray-300">Continuous improvement based on results</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white"><span x-text="t('Optimization')"></span></h3>
+                <p class="text-gray-600 dark:text-gray-300"><span x-text="t('Continuous improvement based on results')"></span></p>
             </div>
         </div>
     </div>
@@ -144,28 +170,28 @@
     <!-- Testimonials Section -->
     <div class="bg-gray-100 dark:bg-gray-900 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">What Our Clients Say</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up"><span x-text="t('What Our Clients Say')"></span></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400">★★★★★</div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">"Their lead generation service has transformed our sales pipeline. The quality of leads is exceptional."</p>
-                    <p class="font-semibold dark:text-white">- David Wilson, Sales Manager</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4"><span x-text="t('Their lead generation service has transformed our sales pipeline. The quality of leads is exceptional.')"></span></p>
+                    <p class="font-semibold dark:text-white"><span x-text="t('- David Wilson, Sales Manager')"></span></p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400">★★★★★</div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">"The lead qualification process is thorough and effective. We're seeing much higher conversion rates."</p>
-                    <p class="font-semibold dark:text-white">- Lisa Chen, Marketing Director</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4"><span x-text="t('The lead qualification process is thorough and effective. We\'re seeing much higher conversion rates.')"></span></p>
+                    <p class="font-semibold dark:text-white"><span x-text="t('- Lisa Chen, Marketing Director')"></span></p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400">★★★★★</div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">"Their lead nurturing campaigns have helped us build stronger relationships with potential customers."</p>
-                    <p class="font-semibold dark:text-white">- Robert Taylor, Business Owner</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4"><span x-text="t('Their lead nurturing campaigns have helped us build stronger relationships with potential customers.')"></span></p>
+                    <p class="font-semibold dark:text-white"><span x-text="t('- Robert Taylor, Business Owner')"></span></p>
                 </div>
             </div>
         </div>
@@ -174,12 +200,12 @@
     <!-- CTA Section -->
     <div class="bg-indigo-600 text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-8" data-aos="fade-up">Ready to Generate Quality Leads?</h2>
+            <h2 class="text-3xl font-bold mb-8" data-aos="fade-up"><span x-text="t('Ready to Generate Quality Leads?')"></span></h2>
             <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                Let's discuss how our lead generation services can help you grow your business.
+                <span x-text="t('Let\'s discuss how our lead generation services can help you grow your business.')"></span>
             </p>
             <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
-                Contact Us Today
+                <span x-text="t('Contact Us Today')"></span>
             </button>
         </div>
     </div>

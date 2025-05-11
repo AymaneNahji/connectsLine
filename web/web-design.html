@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Design Services - Professional Website Development</title>
+    <title x-text="t('Web Design Services - Professional Website Development')"></title>
     <script defer src="/js/alpinejs-persist@3.x.x.min.js"></script>
     <script defer src="/js/alpinejs@3.x.x.min.js"></script>
     <script defer src="/js/htmx.org@2.0.4.min.js"></script>
@@ -14,27 +14,49 @@
     <script src="/js/aos@2.3.1.js"></script>
     <script defer src="/js/partials.js"></script>
 </head>
-    <body x-data="{ isDark: $persist(false), isDrawerOpen: false,  lang: $persist('en'), t(key) { return window.translations[this.lang][key] || key; } }" class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" x-init="AOS.init()">
+    <body 
+        x-data="{ 
+            isDark: $persist(false), 
+            isDrawerOpen: false,  
+            translationIsLoading: false,
+            lang: $persist('en'),
+            t(key) {
+                if(this.translationIsLoading) return 'Waiting for translations...';
+                return this.translations[key] || 'None'; 
+            },
+            loadTranslations() {
+                this.translationIsLoading = true;
+                fetch(`/locales/${this.lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    this.translations = data;
+                })
+                .finally(() => {
+                    this.translationIsLoading = false;
+                });
+            } 
+        }
+        " 
+        class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" 
+        x-init="AOS.init();loadTranslations()"
+        :dir="lang === 'ar' ? 'rtl' : 'ltr'"
+    >
     <nav-bar></nav-bar>
 
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h1 class="text-5xl font-bold mb-6" data-aos="fade-up">Web Design Services</h1>
-                <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Create stunning, responsive websites that engage your audience and drive results with our expert web design services.
-                </p>
-                <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
-                    Start Your Project
-                </button>
+                <h1 class="text-5xl font-bold mb-6" data-aos="fade-up" x-text="t('Web Design Services')"></h1>
+                <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" x-text="t('Create stunning, responsive websites that engage your audience and drive results with our expert web design services.')"></p>
+                <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors" data-aos="fade-up" data-aos-delay="200" x-text="t('Start Your Project')"></button>
             </div>
         </div>
     </div>
 
     <!-- Services Section -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Our Services</h2>
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up" x-text="t('Our Services')"></h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Service Card 1 -->
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up">
@@ -43,10 +65,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Responsive Design</h3>
-                <p class="text-gray-600 dark:text-gray-300">
-                    Mobile-friendly websites that look and perform perfectly across all devices, from smartphones to desktops.
-                </p>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4" x-text="t('Responsive Design')"></h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Mobile-friendly websites that look and perform perfectly across all devices, from smartphones to desktops.')"></p>
             </div>
 
             <!-- Service Card 2 -->
@@ -56,10 +76,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">UI/UX Design</h3>
-                <p class="text-gray-600 dark:text-gray-300">
-                    Intuitive interfaces and seamless user experiences that keep visitors engaged and drive conversions.
-                </p>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4" x-text="t('UI/UX Design')"></h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Intuitive interfaces and seamless user experiences that keep visitors engaged and drive conversions.')"></p>
             </div>
 
             <!-- Service Card 3 -->
@@ -69,10 +87,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Brand Integration</h3>
-                <p class="text-gray-600 dark:text-gray-300">
-                    Consistent branding across all digital touchpoints to strengthen your brand identity and recognition.
-                </p>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4" x-text="t('Brand Integration')"></h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Consistent branding across all digital touchpoints to strengthen your brand identity and recognition.')"></p>
             </div>
         </div>
     </div>
@@ -80,35 +96,35 @@
     <!-- Benefits Section -->
     <div class="bg-gray-100 dark:bg-gray-900 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Why Choose Our Web Design</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up" x-text="t('Why Choose Our Web Design')"></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center" data-aos="fade-up">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">100%</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Responsive</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Works on all devices</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Responsive')"></h3>
+                    <p class="text-gray-600 dark:text-gray-300" x-text="t('Works on all devices')"></p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">3x</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Faster</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Loading speed</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Faster')"></h3>
+                    <p class="text-gray-600 dark:text-gray-300" x-text="t('Loading speed')"></p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">50%+</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Engagement</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Higher user interaction</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Engagement')"></h3>
+                    <p class="text-gray-600 dark:text-gray-300" x-text="t('Higher user interaction')"></p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="300">
                     <div class="bg-white dark:bg-gray-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                         <span class="text-2xl font-bold text-indigo-600">24/7</span>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2 dark:text-white">Support</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Always available</p>
+                    <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Support')"></h3>
+                    <p class="text-gray-600 dark:text-gray-300" x-text="t('Always available')"></p>
                 </div>
             </div>
         </div>
@@ -116,27 +132,27 @@
 
     <!-- Process Section -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">Our Design Process</h2>
+        <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up" x-text="t('Our Design Process')"></h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="text-center" data-aos="fade-up">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">1</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Discovery</h3>
-                <p class="text-gray-600 dark:text-gray-300">Understanding your goals</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Discovery')"></h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Understanding your goals')"></p>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">2</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Design</h3>
-                <p class="text-gray-600 dark:text-gray-300">Creating visual concepts</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Design')"></h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Creating visual concepts')"></p>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">3</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Development</h3>
-                <p class="text-gray-600 dark:text-gray-300">Building your website</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Development')"></h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Building your website')"></p>
             </div>
             <div class="text-center" data-aos="fade-up" data-aos-delay="300">
                 <div class="bg-indigo-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">4</div>
-                <h3 class="text-lg font-semibold mb-2 dark:text-white">Launch</h3>
-                <p class="text-gray-600 dark:text-gray-300">Going live and support</p>
+                <h3 class="text-lg font-semibold mb-2 dark:text-white" x-text="t('Launch')"></h3>
+                <p class="text-gray-600 dark:text-gray-300" x-text="t('Going live and support')"></p>
             </div>
         </div>
     </div>
@@ -144,28 +160,28 @@
     <!-- Testimonials Section -->
     <div class="bg-gray-100 dark:bg-gray-900 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up">What Our Clients Say</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12" data-aos="fade-up" x-text="t('What Our Clients Say')"></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400">★★★★★</div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">"The new website design has transformed our online presence. The user experience is exceptional and our conversion rates have doubled."</p>
-                    <p class="font-semibold dark:text-white">- Sarah Johnson, Marketing Director</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4" x-text="t('The new website design has transformed our online presence. The user experience is exceptional and our conversion rates have doubled.')"></p>
+                    <p class="font-semibold dark:text-white" x-text="t('- Sarah Johnson, Marketing Director')"></p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400">★★★★★</div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">"Their attention to detail and focus on user experience made all the difference. Our bounce rate has decreased significantly."</p>
-                    <p class="font-semibold dark:text-white">- Michael Chen, CEO</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4" x-text="t('Their attention to detail and focus on user experience made all the difference. Our bounce rate has decreased significantly.')"></p>
+                    <p class="font-semibold dark:text-white" x-text="t('- Michael Chen, CEO')"></p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center mb-4">
                         <div class="text-yellow-400">★★★★★</div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">"The responsive design works perfectly across all devices. Our mobile traffic has increased by 150%."</p>
-                    <p class="font-semibold dark:text-white">- Lisa Thompson, E-commerce Manager</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4" x-text="t('The responsive design works perfectly across all devices. Our mobile traffic has increased by 150%.')"></p>
+                    <p class="font-semibold dark:text-white" x-text="t('- Lisa Thompson, E-commerce Manager')"></p>
                 </div>
             </div>
         </div>
@@ -174,13 +190,9 @@
     <!-- CTA Section -->
     <div class="bg-indigo-600 text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-8" data-aos="fade-up">Ready to Transform Your Online Presence?</h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                Let's create a stunning website that engages your audience and drives results.
-            </p>
-            <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
-                Start Your Project
-            </button>
+            <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" x-text="t('Ready to Transform Your Online Presence?')"></h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100" x-text="t('Let\'s create a stunning website that engages your audience and drives results.')"></p>
+            <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors" data-aos="fade-up" data-aos-delay="200" x-text="t('Start Your Project')"></button>
         </div>
     </div>
 
