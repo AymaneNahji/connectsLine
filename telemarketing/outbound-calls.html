@@ -30,7 +30,7 @@
             if(this.translations[this.lang]) return;
             this.translationIsLoading = true;
             this.showTranslationLoading = true;
-            fetch(`locales/${this.lang}.json`)
+            fetch(`../locales/${this.lang}.json`)
             .then(response => response.json())
             .then(data => {
                 this.translations[this.lang] = data;
