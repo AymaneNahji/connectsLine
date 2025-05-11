@@ -14,7 +14,33 @@
     <script src="/js/aos@2.3.1.js"></script>
     <script defer src="/js/partials.js"></script>
 </head>
-    <body x-data="{ isDark: $persist(false), isDrawerOpen: false,  lang: $persist('en'), t(key) { return window.translations[this.lang][key] || key; } }" class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" x-init="AOS.init()">
+<body 
+    x-data="{ 
+        isDark: $persist(false), 
+        isDrawerOpen: false,  
+        translationIsLoading: false,
+        lang: $persist('en'),
+        t(key) {
+            if(this.translationIsLoading) return 'Waiting for translations...';
+            return this.translations[key] || 'None'; 
+        },
+        loadTranslations() {
+            this.translationIsLoading = true;
+            fetch(`/locales/${this.lang}.json`)
+            .then(response => response.json())
+            .then(data => {
+                this.translations = data;
+            })
+            .finally(() => {
+                this.translationIsLoading = false;
+            });
+        } 
+    }
+    " 
+    class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" 
+    x-init="AOS.init();loadTranslations()"
+    :dir="lang === 'ar' ? 'rtl' : 'ltr'"
+>
     <nav-bar></nav-bar>
 
     <!-- Hero Section -->

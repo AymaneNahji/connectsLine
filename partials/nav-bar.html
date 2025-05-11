@@ -7,14 +7,19 @@
 </div>
 
 <!-- Mobile Drawer -->
-<div x-show="isDrawerOpen" x-transition:enter="transition ease-in-out duration-300 transform"
-    x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
-    x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0"
+<div x-show="isDrawerOpen && lang !== 'ar'" 
+    x-transition:enter="transition ease-in-out duration-300 transform"
+    x-transition:enter-start="-translate-x-full" 
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transition ease-in-out duration-300 transform" 
+    x-transition:leave-start="translate-x-0"
     x-transition:leave-end="-translate-x-full"
     class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-gray-900 shadow-lg z-50 md:hidden">
     <div class="p-4">
         <div class="flex justify-between items-center mb-8">
-            <a href="/index.html" class="text-xl font-bold text-gray-800 dark:text-white">Your Brand</a>
+            <a href="/index.html" class="text-xl font-bold text-gray-800 dark:text-white">
+                Your Brand
+            </a>
             <button @click="isDrawerOpen = false"
                 class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,48 +30,108 @@
         </div>
         <div class="flex flex-col space-y-4">
             <a href="/index.html"
-                class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Home</a>
+                class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Home')"></a>
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open"
                     class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center justify-between w-full">
-                    <span>Telemarketing</span>
+                    <span x-text="t('Telemarketing')"></span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
                 <div x-show="open" class="pl-4 mt-2 space-y-2">
                     <a href="/telemarketing/outbound-calls.html"
-                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Outbound
-                        Calls</a>
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Outbound Calls')"></a>
                     <a href="/telemarketing/lead-generation.html"
-                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Lead
-                        Generation</a>
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Lead Generation')"></a>
                     <a href="/telemarketing/customer-support.html"
-                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Customer
-                        Support</a>
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Customer Support')"></a>
                 </div>
             </div>
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open"
                     class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center justify-between w-full">
-                    <span>Developpement web</span>
+                    <span x-text="t('Developpement web')"></span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
                 <div x-show="open" class="pl-4 mt-2 space-y-2">
                     <a href="/web/web-design.html"
-                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Web
-                        Design</a>
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Web Design')"></a>
                     <a href="/web/e-commerce.html"
-                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">E-commerce</a>
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('E-commerce')"></a>
                     <a href="/web/custom-development.html"
-                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Custom
-                        Development</a>
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Custom Development')"></a>
                 </div>
             </div>
             <a href="/contact.html"
-                class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</a>
+                class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Contact')"></a>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Drawer but RTL -->
+<div x-show="isDrawerOpen && lang === 'ar'" 
+    x-transition:enter="transition ease-in-out duration-300 transform"
+    x-transition:enter-start="translate-x-full" 
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transition ease-in-out duration-300 transform" 
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="translate-x-full"
+    class="fixed inset-y-0 right-0 w-64 bg-white dark:bg-gray-900 shadow-lg z-50 md:hidden">
+    <div class="p-4">
+        <div class="flex justify-between items-center mb-8">
+            <a href="/index.html" class="text-xl font-bold text-gray-800 dark:text-white" >
+                Your Brand
+            </a>
+            <button @click="isDrawerOpen = false"
+                class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-4">
+            <a href="/index.html"
+                class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Home')"></a>
+            <div x-data="{ open: false }" class="relative">
+                <button @click="open = !open"
+                    class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center justify-between w-full">
+                    <span x-text="t('Telemarketing')"></span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="open" class="pl-4 mt-2 space-y-2">
+                    <a href="/telemarketing/outbound-calls.html"
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Outbound Calls')"></a>
+                    <a href="/telemarketing/lead-generation.html"
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Lead Generation')"></a>
+                    <a href="/telemarketing/customer-support.html"
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Customer Support')"></a>
+                </div>
+            </div>
+            <div x-data="{ open: false }" class="relative">
+                <button @click="open = !open"
+                    class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center justify-between w-full">
+                    <span x-text="t('Developpement web')"></span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="open" class="pl-4 mt-2 space-y-2">
+                    <a href="/web/web-design.html"
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Web Design')"></a>
+                    <a href="/web/e-commerce.html"
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('E-commerce')"></a>
+                    <a href="/web/custom-development.html"
+                        class="block text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Custom Development')"></a>
+                </div>
+            </div>
+            <a href="/contact.html"
+                class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Contact')"></a>
         </div>
     </div>
 </div>
@@ -77,18 +142,20 @@
         <div class="flex justify-between h-16 items-center">
             <!-- Logo/Brand -->
             <div class="flex-shrink-0">
-                <a href="/index.html" class="text-xl font-bold text-gray-800 dark:text-white">Your Brand</a>
+                <a href="/index.html" class="text-xl font-bold text-gray-800 dark:text-white">
+                    Your Brand
+                </a>
             </div>
 
             <!-- Navigation Links -->
-            <div class="hidden md:flex space-x-8">
+            <div class="hidden md:flex gap-8">
                 <a href="/index.html"
-                    class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Home</a>
+                    class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Home')"></a>
                 <div x-data="{ open: false }" class="relative">
                     <button @click="open = !open"
-                        class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
-                        Telemarketing
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        class="text-gray-600 gap-1 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
+                        <span x-text="t('Telemarketing')"></span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg>
@@ -97,22 +164,19 @@
                         class="z-20 absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
                         <div class="py-1">
                             <a href="/telemarketing/outbound-calls.html"
-                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Outbound
-                                Calls</a>
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('Outbound Calls')"></a>
                             <a href="/telemarketing/lead-generation.html"
-                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Lead
-                                Generation</a>
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('Lead Generation')"></a>
                             <a href="/telemarketing/customer-support.html"
-                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Customer
-                                Support</a>
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('Customer Support')"></a>
                         </div>
                     </div>
                 </div>
                 <div x-data="{ open: false }" class="relative">
                     <button @click="open = !open"
-                        class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
-                        Developpement web
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        class="text-gray-600 gap-1 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white flex items-center">
+                        <span x-text="t('Developpement web')"></span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
                             </path>
                         </svg>
@@ -121,21 +185,44 @@
                         class="z-20 absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
                         <div class="py-1">
                             <a href="/web/web-design.html"
-                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Web
-                                Design</a>
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('Web Design')"></a>
                             <a href="/web/e-commerce.html"
-                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">E-commerce</a>
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('E-commerce')"></a>
                             <a href="/web/custom-development.html"
-                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Custom
-                                Development</a>
+                                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700" x-text="t('Custom Development')"></a>
                         </div>
                     </div>
                 </div>
                 <a href="/contact.html"
-                    class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</a>
+                    class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" x-text="t('Contact')"></a>
             </div>
 
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center gap-4">
+                <!-- translation en , fr -->
+                <div class="relative" x-data="{ open: false }">
+                    <button @click="open = !open" @click.away="open = false"
+                        class="bg-gray-200 dark:bg-gray-800 p-2 size-10 rounded-full cursor-pointer flex items-center justify-center">
+                        <span class="text-gray-800 dark:text-gray-200 font-medium" x-text="lang.toUpperCase()"></span>
+                    </button>
+                    <div x-show="open" 
+                        class="absolute right-0 mt-2 w-20 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50">
+                        <div class="py-1">
+                            <button @click="lang='en'; loadTranslations(); open = false"
+                                class="block w-full text-start px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                English
+                            </button>
+                            <button @click="lang='fr'; loadTranslations(); open = false"
+                                class="block w-full text-start px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                Français
+                            </button>
+                            <button @click="lang='ar'; loadTranslations(); open = false"
+                                class="block w-full text-start px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                العربية
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Dark Mode Toggle -->
                 <button @click="isDark = !isDark"
                     class="bg-gray-200 dark:bg-gray-800 p-2 size-10 rounded-full cursor-pointer">
