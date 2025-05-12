@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <script defer src="/js/alpinejs-persist@3.x.x.min.js"></script>
+    <script defer src="/js/alpinejs@3.x.x.min.js"></script>
+    <script defer src="/js/htmx.org@2.0.4.min.js"></script>
+    <link href="/css/aos@2.3.1.css" rel="stylesheet">
+    <script src="/js/aos@2.3.1.js"></script>
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body
+    x-data="{ 
+        isDark: $persist(false),
+        isDrawerOpen: false,
+        translationIsLoading: false,
+        lang: $persist('en'),
+        showTranslationLoading: false,
+        translations: {},
+        t(key) {
+            if(this.translationIsLoading) return 'Waiting for translations...';
+            return this.translations[this.lang][key] || key; 
+        },
+        loadTranslations() {
+            if(this.translations[this.lang]) return;
+            this.translationIsLoading = true;
+            this.showTranslationLoading = true;
+            fetch(`/locales/${this.lang}.json`)
+            .then(response => response.json())
+            .then(data => {
+                this.translations[this.lang] = data;
+            })
+            .finally(() => {
+                this.translationIsLoading = false;
+                this.showTranslationLoading = false;
+            });
+        },
+    }" 
+    class="bg-gray-50 overflow-x-hidden" :class="isDark ? 'dark bg-gray-950' : ''" 
+    x-init="AOS.init();loadTranslations()"
+    :dir="lang === 'ar' ? 'rtl' : 'ltr'"
+>
+    {{> translation-loading}}
+    {{> nav-bar}}
+    {{{body}}}
+    {{> main-footer}}
+</body>
+</html> 

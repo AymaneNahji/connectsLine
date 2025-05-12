@@ -1,53 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title x-text="t('Customer Support Services - Professional Telemarketing Solutions')">Customer Support Services - Professional Telemarketing Solutions</title>
-    <script defer src="../js/alpinejs-persist@3.x.x.min.js"></script>
-    <script defer src="../js/alpinejs@3.x.x.min.js"></script>
-    <script defer src="../js/htmx.org@2.0.4.min.js"></script>
-    <link rel="stylesheet" href="../css/output.css">
-    <!-- Add AOS CSS -->
-    <link href="../css/aos@2.3.1.css" rel="stylesheet">
-    <!-- Add AOS JS -->
-    <script src="../js/aos@2.3.1.js"></script>
-    <script defer src="../js/partials.js"></script>
-</head>
-<body 
-    x-data="{ 
-        isDark: $persist(false), 
-        isDrawerOpen: false,  
-        translationIsLoading: false,
-        lang: $persist('en'),
-        showTranslationLoading: false,
-        translations: {},
-        t(key) {
-            if(this.translationIsLoading) return 'Waiting for translations...';
-            return this.translations[this.lang][key] || 'None'; 
-        },
-        loadTranslations() {
-            if(this.translations[this.lang]) return;
-            this.translationIsLoading = true;
-            this.showTranslationLoading = true;
-            fetch(`../locales/${this.lang}.json`)
-            .then(response => response.json())
-            .then(data => {
-                this.translations[this.lang] = data;
-            })
-            .finally(() => {
-                this.translationIsLoading = false;
-                this.showTranslationLoading = false;
-            });
-        } 
-    }
-    " 
-    class="bg-gray-50" :class="isDark ? 'dark bg-gray-950' : ''" 
-    x-init="AOS.init();loadTranslations()"
-    :dir="lang === 'ar' ? 'rtl' : 'ltr'"
->
-    <translation-loading></translation-loading>
-    <nav-bar></nav-bar>
 
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-20">
@@ -216,7 +166,3 @@
             </button>
         </div>
     </div>
-
-    <main-footer></main-footer>
-</body>
-</html> 

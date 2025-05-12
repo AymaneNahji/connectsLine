@@ -109,3 +109,5 @@ build/
 *.temp 
 
 prompts.md
+
+.env

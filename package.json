@@ -1,17 +1,25 @@
 {
-  "name": "connectsline",
+  "name": "ejs-mini-project",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A mini project using Nunjucks with common layout",
+  "main": "server.js",
   "scripts": {
-    "tailwind": "tailwindcss -i ./css/input.css -o ./css/output.css --watch"
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"npm run build:css\"",
+    "build:css": "tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^4.18.2",
+    "express-file-routing": "^3.1.0",
+    "express-handlebars": "^8.0.2",
+    "joi": "^17.13.3",
+    "nunjucks": "^3.2.4"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.17",
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.0.3",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1"
   }
