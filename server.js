@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const dotenv = require('dotenv');
 const Joi = require('joi');
+const path = require('path');
 const app = express();
 
 // Load environment variables
@@ -56,15 +57,18 @@ function findFreePort(startPort) {
         });
     });
 }
+
 // Set Handlebars as the view engine
 app.engine('hbs', exphbs.engine({ 
     extname: '.hbs',
-    // partialsDir: 'views/layouts/partials'
+    layoutsDir: path.join(__dirname, 'views/layouts'),
+    partialsDir: path.join(__dirname, 'views/partials')
 }));
 app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
 
 // Serve static files from 'public' directory
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware to pass environment variables to all routes
 app.use((req, res, next) => {
