@@ -1,38 +1,58 @@
-# ConnectsLine
+# ConnectLine Project
 
-A modern web platform offering telemarketing and web development services, built with cutting-edge technologies.
+A modern web application built with Express.js and Handlebars (HBS) template engine, featuring a responsive design powered by Tailwind CSS.
 
 ## Features
 
-- 🌐 Modern, responsive web design
+- 🎨 Modern UI with Tailwind CSS
+- 📱 Responsive design
+- 📝 Contact form with validation
+- 🔄 HTMX integration for dynamic content
+- 🏗️ Modular layout system with partials
+- 🔒 Environment variable configuration
+- 🚀 Development and production ready
 - 🌙 Dark mode support
 - 🌍 Multi-language support
 - 📱 Mobile-friendly interface
-- 🎨 Beautiful UI with Tailwind CSS
 - ⚡ Dynamic content with Alpine.js and HTMX
 - 📊 Animated sections with AOS (Animate On Scroll)
 
-## Tech Stack
+## Project Structure
 
-- **Frontend Framework**: Alpine.js
-- **CSS Framework**: Tailwind CSS
-- **Dynamic Content**: HTMX
-- **Animations**: AOS (Animate On Scroll)
-- **Build Tools**: PostCSS, Autoprefixer
+```
+├── views/
+│   ├── layouts/      # Layout templates
+│   ├── partials/     # Reusable components
+│   ├── telemarketing/# Telemarketing service pages
+│   ├── web/         # Web service pages
+│   ├── contact.hbs  # Contact page
+│   └── index.hbs    # Home page
+├── public/          # Static assets
+├── server.js        # Main application file
+└── package.json     # Project dependencies
+```
 
-## Getting Started
+### Telemarketing Services
+- Customer Support
+- Lead Generation
+- Outbound Calls
 
-### Prerequisites
+### Web Services
+- Custom Development
+- E-commerce Solutions
+- Web Design
 
-- Node.js (Latest LTS version recommended)
-- npm (comes with Node.js)
+## Prerequisites
 
-### Installation
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+## Installation
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
-cd connectsline
+git clone <repository-url>
+cd connectsLine
 ```
 
 2. Install dependencies:
@@ -40,66 +60,47 @@ cd connectsline
 npm install
 ```
 
-3. Start the development server:
+3. Create a `.env` file based on `.env.example`:
 ```bash
-npm run tailwind
+cp .env.example .env
 ```
 
-## Project Structure
-
-```
-connectsline/
-├── css/
-│   ├── input.css
-│   └── output.css
-├── js/
-│   ├── alpinejs@3.x.x.min.js
-│   ├── alpinejs-persist@3.x.x.min.js
-│   ├── htmx.org@2.0.4.min.js
-│   └── partials.js
-├── locales/
-│   └── [language-files].json
-├── partials/
-│   └── [component-files]
-├── index.html
-├── contact.html
-├── package.json
-├── tailwind.config.js
-└── postcss.config.js
-```
+4. Update the environment variables in `.env` with your configuration.
 
 ## Development
 
-The project uses Tailwind CSS for styling. To watch for changes in your CSS:
-
+Run the development server:
 ```bash
-npm run tailwind
+npm run dev
 ```
 
-## Features in Detail
+This will start:
+- The Express server with nodemon for auto-reloading
+- Tailwind CSS in watch mode for style updates
 
-### Telemarketing Services
-- Outbound Calls & Lead Generation
-- Customer Support & Satisfaction
-- Market Research & Analysis
+## Production
 
-### Web Development Services
-- Custom Web Design & Development
-- E-commerce Solutions
-- Responsive & Modern UI/UX
+Start the production server:
+```bash
+npm start
+```
 
-## Contributing
+## Environment Variables
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Required environment variables:
+- `COMPANY_ADDRESS`
+- `COMPANY_EMAIL`
+- `COMPANY_PHONE`
+- `FACEBOOK_URL`
+- `TWITTER_URL`
+- `LINKEDIN_URL`
 
-## License
+## Technologies Used
 
-This project is licensed under the ISC License.
+- Express.js - Web framework
+- Handlebars (HBS) - Template engine
+- Tailwind CSS - Utility-first CSS framework
+- HTMX - Dynamic content loading
+- Joi - Data validation
+- dotenv - Environment configuration
 
-## Contact
-
-For any inquiries, please visit our contact page or reach out through the provided contact information. 

@@ -1,7 +1,7 @@
 {
-  "name": "ejs-mini-project",
+  "name": "connectline",
   "version": "1.0.0",
-  "description": "A mini project using Nunjucks with common layout",
+  "description": "A mini project using handlebars with common layout",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
