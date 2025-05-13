@@ -4,9 +4,6 @@ const dotenv = require('dotenv');
 const Joi = require('joi');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
-const sequelize = require('./models/database');
-const Contact = require('./models/Contact');
-const Newsletter = require('./models/Newsletter');
 const app = express();
 
 // Load environment variables
@@ -21,14 +18,6 @@ const limiter = rateLimit({
     legacyHeaders: false,
 });
 
-// Initialize database
-sequelize.sync({ force: true })
-    .then(() => {
-        console.log('Database synchronized successfully');
-    })
-    .catch(err => {
-        console.error('Error synchronizing database:', err);
-    });
 
 // Add body parser middleware
 app.use(express.json());
@@ -163,52 +152,20 @@ app.get('/contact', (req, res) => {
 });
 
 app.post('/contact', limiter, validateContact, async (req, res) => {
-    try {
-        await Contact.create({
-            name: req.body.name,
-            email: req.body.email,
-            message: req.body.message,
-            phone: req.body.phone,
-            subject: req.body.subject
-        });
-
-        res.render('partials/htmx-contact-form', { 
-            success: true,
-            message: 'Thank you for your message! We will get back to you soon.',
-            layout: false
-        });
-    } catch (error) {
-        console.error('Error saving contact:', error);
-        res.render('partials/htmx-contact-form', { 
-            success: false,
-            error: 'There was an error saving your message. Please try again.',
-            formData: req.body,
-            layout: false
-        });
-    }
+    res.render('partials/htmx-contact-form', { 
+        success: true,
+        message: 'Thank you for your message! We will get back to you soon.',
+        layout: false
+    });
 });
 
 // Newsletters
 app.post('/newsletter', limiter, validateNewsletter, async (req, res) => {
-    try {
-        await Newsletter.create({
-            email: req.body.email
-        });
-
-        res.render('partials/htmx-newsletters-form', { 
-            success: true,
-            message: 'Thank you for subscribing to our newsletter!',
-            layout: false
-        });
-    } catch (error) {
-        console.error('Error saving newsletter subscription:', error);
-        res.render('partials/htmx-newsletters-form', { 
-            success: false,
-            error: 'This email is already subscribed to our newsletter.',
-            formData: req.body,
-            layout: false
-        });
-    }
+    res.render('partials/htmx-newsletters-form', { 
+        success: true,
+        message: 'Thank you for subscribing to our newsletter!',
+        layout: false
+    });
 });
 
 // Start server with a free port
