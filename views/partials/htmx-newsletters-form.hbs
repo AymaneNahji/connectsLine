@@ -1,0 +1,22 @@
+<form hx-post="/newsletter" hx-swap="outerHTML" hx-indicator="#loading-indicator"
+    class="flex flex-col flex-wrap md:flex-row gap-4 justify-center">
+    <input type="email" placeholder="Enter your email" name="email" value="{{formData.email}}" required
+        class="px-6 py-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 flex-grow max-w-md border border-gray-300 dark:border-gray-600">
+    <button
+        class="px-8 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+        <div id="loading-indicator" class="htmx-indicator">
+            <div class="flex justify-center">
+                <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+            </div>
+        </div>
+        Notify Me
+    </button>
+    <div class="mt-4 w-full">
+        {{#if success}}
+        <p class="text-green-600" x-text="t('Thank you for subscribing to our newsletter!')"></p>
+        {{/if}}
+        {{#if error}}
+        <p class="text-red-600">{{error}}</p>
+        {{/if}}
+    </div>
+</form>
