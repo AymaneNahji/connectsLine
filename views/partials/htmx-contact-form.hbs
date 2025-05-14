@@ -21,16 +21,40 @@
             x-text="t('Subject')"></label>
         <select id="subject" name="subject" required
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white p-2">
-            {{!-- activities --}}
-            <option value="web-design" x-text="t('Web Design')"></option>
-            <option value="e-commerce" x-text="t('E-commerce')"></option>
-            <option value="custom-development" x-text="t('Custom Development')"></option>
-            <option value="customer-support" x-text="t('Customer Support')"></option>
-            <option value="lead-generation" x-text="t('Lead Generation')"></option>
-            <option value="outbound-calls" x-text="t('Outbound Calls')"></option>
-            {{!-- others --}}
-            <option value="demand-job-application" x-text="t('Demand Job Application')"></option>
-            <option value="other" x-text="t('Other')"></option>
+            {{#if formData.subject}}
+                {{!-- activities --}}
+                <option {{#if (eq formData.subject 'web-design')}}selected{{/if}} value="web-design" x-text="t('Web Design')"></option>
+                <option {{#if (eq formData.subject 'e-commerce')}}selected{{/if}} value="e-commerce" x-text="t('E-commerce')"></option>
+                <option {{#if (eq formData.subject 'custom-development')}}selected{{/if}} value="custom-development" x-text="t('Custom Development')"></option>
+                <option {{#if (eq formData.subject 'customer-support')}}selected{{/if}} value="customer-support" x-text="t('Customer Support')"></option>
+                <option {{#if (eq formData.subject 'lead-generation')}}selected{{/if}} value="lead-generation" x-text="t('Lead Generation')"></option>
+                <option {{#if (eq formData.subject 'outbound-calls')}}selected{{/if}} value="outbound-calls" x-text="t('Outbound Calls')"></option>
+                {{!-- others --}}
+                <option {{#if (eq formData.subject 'demand-job-application')}}selected{{/if}} value="demand-job-application" x-text="t('Demand Job Application')"></option>
+                <option {{#if (eq formData.subject 'other')}}selected{{/if}} value="other" x-text="t('Other')"></option>
+            {{else if subject}}
+                {{!-- activities --}}
+                <option {{#if (eq subject 'web-design')}}selected{{/if}} value="web-design" x-text="t('Web Design')"></option>
+                <option {{#if (eq subject 'e-commerce')}}selected{{/if}} value="e-commerce" x-text="t('E-commerce')"></option>
+                <option {{#if (eq subject 'custom-development')}}selected{{/if}} value="custom-development" x-text="t('Custom Development')"></option>
+                <option {{#if (eq subject 'customer-support')}}selected{{/if}} value="customer-support" x-text="t('Customer Support')"></option>
+                <option {{#if (eq subject 'lead-generation')}}selected{{/if}} value="lead-generation" x-text="t('Lead Generation')"></option>
+                <option {{#if (eq subject 'outbound-calls')}}selected{{/if}} value="outbound-calls" x-text="t('Outbound Calls')"></option>
+                {{!-- others --}}
+                <option {{#if (eq subject 'demand-job-application')}}selected{{/if}} value="demand-job-application" x-text="t('Demand Job Application')"></option>
+                <option {{#if (eq subject 'other')}}selected{{/if}} value="other" x-text="t('Other')"></option>
+            {{else}}
+                {{!-- activities --}}
+                <option value="web-design" x-text="t('Web Design')"></option>
+                <option value="e-commerce" x-text="t('E-commerce')"></option>
+                <option value="custom-development" x-text="t('Custom Development')"></option>
+                <option value="customer-support" x-text="t('Customer Support')"></option>
+                <option value="lead-generation" x-text="t('Lead Generation')"></option>
+                <option value="outbound-calls" x-text="t('Outbound Calls')"></option>
+                {{!-- others --}}
+                <option value="demand-job-application" x-text="t('Demand Job Application')"></option>
+                <option value="other" x-text="t('Other')"></option>
+            {{/if}}
         </select>
     </div>
     <div>

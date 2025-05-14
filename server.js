@@ -92,7 +92,12 @@ function findFreePort(startPort) {
 app.engine('hbs', exphbs.engine({ 
     extname: '.hbs',
     layoutsDir: path.join(__dirname, 'views/layouts'),
-    partialsDir: path.join(__dirname, 'views/partials')
+    partialsDir: path.join(__dirname, 'views/partials'),
+    helpers: {
+        eq: function (v1, v2) {
+            return v1 === v2;
+        }
+    }
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
@@ -148,14 +153,17 @@ app.get('/web/web-design', (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
-    res.render('contact');
+    res.render('contact', {
+        subject: req.query?.subject
+    });
 });
 
 app.post('/contact', limiter, validateContact, async (req, res) => {
     res.render('partials/htmx-contact-form', { 
         success: true,
         message: 'Thank you for your message! We will get back to you soon.',
-        layout: false
+        layout: false,
+        subject: req.query?.subject
     });
 });
 
