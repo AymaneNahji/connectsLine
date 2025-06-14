@@ -99,6 +99,7 @@ app.engine('hbs', exphbs.engine({
         }
     }
 }));
+
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -137,6 +138,14 @@ app.get('/telemarketing/lead-generation', (req, res) => {
 
 app.get('/telemarketing/outbound-calls', (req, res) => {
     res.render('telemarketing/outbound-calls');
+});
+
+app.get('/telemarketing/email-marketing', (req, res) => {
+    res.render('telemarketing/email-marketing');
+});
+
+app.get('/telemarketing/seo', (req, res) => {
+    res.render('telemarketing/seo');
 });
 
 // Web services routes
